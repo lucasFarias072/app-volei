@@ -1,0 +1,26 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Original: ../public/css/styles.css -->
+    <!--
+      * Aparentemente, eu preciso add ../ até o caminho normalizar (voltar a ser o caminho raiz)
+      * Se eu não fizer, os arquivos estáticos nunca carregam
+      * O mesmo acontece com os arquivos scripts (abaixo, segue a mesma lógica)
+      * Para saber, se foi corrigido, add ../, atualize a rota, veja o código fonte e leia o link (passe o mouse)
+     -->
+    <link rel="stylesheet" href="../../../public/css/styles.css">
+    <title>Jogadores de uma partida</title>
+    
+</head>
+<body style="min-height: 100vh;" class="flex column going-center">
+    <div id="players-this-match">
+      {{PLAYERS}}
+    </div>
+    <!--<script type="module" src="../../../../dist/src/public/js/scripts.js"></script>-->
+    <script type="module" src="../../../../dist/public/js/players-from-match.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="../public/css/login.css">
+    <title>Galero do Vôlei - Entrar</title>
+</head>
+<body>
+
+    <!-- main -->
+    <div class="full-height flex column going-center">
+
+        <div class="flex column going-center gap">
+        <div class="flex row going-center gap">
+          <p class="app-name">Galera do Vôlei</p>
+          <p class="voley-ball">🏐</p>
+        </div>
+        
+        <div class="flex row going-center gap">
+          <h4 class="light">Olá, jogador! faça seu login abaixo</h4>
+          <p id="login-mock">mockar login</p>
+        </div>
+        
+        <!-- Login form -->
+        <div id="login-div" class="flex gap mt-sm">
+          <form action="/painel-usuario" method="POST">
+            
+            <!-- form fields -->
+            <div id="login-form-fields" class="flex column going-left gap">
+
+              <div class="flex column going-left gap">
+                <label for="username">Seu nome de usuário</label>
+                <input class="form-login-input mt-sm" type="text" id="username" name="username" required autofocus>
+              </div>
+
+              <div class="flex column going-left gap">
+                <label for="password">Sua senha</label>
+                <input class="form-login-input mt-sm" type="password" id="password" name="password" required>
+              </div>
+
+            </div>
+
+            <button class="mt-sm" id="form-login-btn" type="submit">entrar</button>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /main -->
+
+    <script type="module" src="../../dist/public/js/login.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="../public/css/sign-in.css">
+    <title>Erro no login</title>
+    <style>
+        #error-title {
+            color: crimson; 
+            font-size: 2rem;
+        }
+        #errors-list {
+            color: #ff9;
+        }
+    </style>
+</head>
+<body class="full-height flex column going-center gap">
+    <h2 id="error-title">Erro na entrada</h2>
+    <div class="flex column going-left gap">
+    <h4>Possíveis erros:</h4>
+    <ul id="erros-list" class="mt-sm">
+        <li>usuário, senha (incorretos)</li>
+        <li>usuário, senha (não encontrados)</li>
+    </ul>
+    </div>
+    <a class="return-index" href="/">voltar</a>
+</body>
+</html>

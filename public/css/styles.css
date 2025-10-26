@@ -1,0 +1,312 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-flow: column wrap;
+}
+
+.row {
+  flex-flow: row wrap;
+}
+
+.row-no-wrap {
+  flex-flow: row;
+}
+
+.gap {
+  gap: .5rem;
+}
+
+.big-gap {
+  gap: 0 2rem;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.going-left {
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.going-center {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.going-right {
+  align-items: flex-end;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.mt-sm {
+  margin-top: .5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: linear-gradient(15deg, #222, #232, #223);
+  font-family: sans-serif;
+  background-attachment: fixed;
+}
+
+.date-hour-sit {
+  background: rgb(0, 99, 99);
+  border: #232 solid 1px;
+  border-radius: .3rem;
+  padding: .3rem .7rem;
+}
+
+.detail {
+  color: rgb(255, 222, 100);
+  font-size: .8rem;
+  text-shadow: 0 0 .3rem #ff9;
+}
+
+#get-all-players {
+  overflow-x: auto;
+}
+
+label {
+  color: white;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+li {
+  list-style-position: inside;
+}
+
+.light {
+  color: #ff9;
+}
+
+.match-site, .player-name {
+  font-size: 1.4rem;
+}
+
+.player-category {
+  border: #222 solid 1px;
+  color: #222;
+  margin: .3rem 0;
+  padding: .25rem .5rem;
+}
+
+.players-from-match {
+  font-size: .9rem;
+  margin: 1rem 0;
+}
+
+.player-performance {
+  border-radius: .2rem;
+  padding: .2rem;
+}
+
+.player-style {
+  background: rgba(60, 179, 113, .3);
+  border: rgb(0, 99, 66) solid 1px;
+  box-shadow: 0 0 .3rem rgb(0, 99, 99);
+  border-radius: .5rem;
+  color: #fff;
+  margin: .5rem;
+  padding: .5rem;
+  /* height: 15vh;
+  width: 20vw; */
+}
+
+.player-style-simple {
+  color: #fff;
+  margin: .3rem;
+  padding: .3rem;
+  text-align: left;
+}
+
+table {
+  margin-top: 2rem;
+}
+
+.match-style {
+  background: rgba(60, 179, 113, .7);
+  box-shadow: 0 0 1rem rgb(0, 99, 99);
+  border-radius: .5rem;
+  color: #fff;
+  margin: .5rem;
+  padding: .5rem;
+  /* height: 30vh;
+  width: 22vw; */
+}
+
+.match-over-style {
+  background: rgba(220, 20, 60, .7);
+  box-shadow: 0 0 1rem crimson;
+  border-radius: .5rem;
+  color: #fff;
+  margin: .5rem;
+  padding: .5rem;
+  /* height: 30vh;
+  width: 22vw; */
+  opacity: .7;
+}
+
+.match-organizer {
+  margin: .5rem 0;
+}
+
+.match-players-title {
+  background: rgba(60, 179, 113, .3);
+  box-shadow: 0 0 .5rem rgb(60, 179, 113);
+  color: white;
+  padding: .5rem 1.5rem;
+}
+
+.organizer {
+  background: white;
+  border-radius: .5rem;
+  color: black;
+  margin: .5rem 0;
+  padding: .3rem .6rem;
+}
+
+.return-index {
+  background: mediumseagreen;
+  border-radius: .3rem;
+  color: white;
+  padding: .5rem 1.5rem;
+}
+
+.roof-offset {
+  margin-top: 2rem;
+}
+
+.see-players {
+  border: #222 solid 1px;
+  background: rgba(0, 99, 99, .5);
+  color: aqua;
+  cursor: pointer;
+  margin: .5rem 0 0 0;
+  outline: none;
+  padding: .5rem;
+  transition: linear .5s;
+}
+
+.see-players:hover {
+  box-shadow: 0 0 1rem rgb(0, 99, 99);
+}
+
+th {
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+/* 1. ELEMENTO FIXO NA LATERAL */
+.sidebar {
+  position: fixed;     /* Fica fixo na tela */
+  top: 0;
+  left: -20rem;        /* ESCONDIDO: -200px para fora da tela */
+  width: 20rem;
+  height: 100vh;       /* Altura total da tela */
+  background: linear-gradient(15deg, #232, #223);
+  border-right: black solid 5px;
+  border-radius: .7rem;
+  box-shadow: 0 0 .5rem black;
+  color: white;
+  
+  /* 2. A MÁGICA: TRANSITION */
+  transition: left .7s;
+}
+
+#sidebar-close {
+   background: crimson;
+   border: transparent solid 1px;
+   cursor: pointer;
+   padding: .5rem 1rem;
+   transition: ease .5s;
+   margin: 1rem 0 0 10rem;
+}
+
+#sidebar-container {
+  margin-left: 2rem;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+#sidebar-open { 
+   background: mediumseagreen;
+   border: transparent solid 1px;
+   cursor: pointer;
+   padding: .5rem 1rem;
+   transition: ease .5s;
+   margin: .5rem;
+}
+
+#sidebar-open:hover { 
+  box-shadow: 0 0 1rem mediumseagreen;
+}
+
+
+
+
+
+
+
+
+
+.app-name {
+  color: white;
+  font-size: 3rem;
+  text-shadow: 0 0 1rem white;
+}
+
+#form-login-btn {
+  background: rgb(33, 66, 99);
+  border: rgb(33, 66,99) solid 1px;
+  border-radius: .3rem;
+  color: aqua;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  transition: ease .7s;
+}
+
+#form-login-btn:hover {
+  border: aqua solid 1px; 
+}
+
+.form-login-input {
+  background: rgb(44, 77, 109);
+  border: rgb(33, 66, 99) solid 1px;
+  color: white;
+  outline: none;
+  padding: .3rem;
+  text-shadow: 0 0 .3rem white;
+}
+
+.voley-ball {
+  font-size: 2.5rem;
+  text-shadow: 0 0 .3rem white;
+}

@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <title>Plataforma Vôlei</title>
+</head>
+<body>
+
+    <div class="sidebar flex column going-left gap" id="sidebar">
+        <div id="sidebar-container">
+            <button id="sidebar-close">fechar</button>
+            <h3 id="actions">Ações</h3>
+        </div>
+    </div>
+
+    <button id="sidebar-open">☰ Abrir ações</button>
+    
+    <!-- Conteúdo dinâmico -->
+
+    <div id="players-panel-title" class="flex row going-center">
+        <h2 class="roof-offset">Painel de Jogadores</h2>
+    </div>
+    
+    <div id="get-all-players-container" class="flex column going-center">
+        <div id="get-all-players" class="flex row-no-wrap going-center"></div>
+    </div>
+
+    <div id="matches-panel-title" class="flex row going-center">
+        <h2 class="roof-offset">Partidas</h2>
+    </div>
+    
+    <div id="get-all-matches-container" class="flex column going-center">
+        <div id="get-all-matches" class="flex row-no-wrap going-center"></div>
+    </div>
+
+    <script type="module" src="../../dist/public/js/scripts.js"></script>
+</body>
+</html>

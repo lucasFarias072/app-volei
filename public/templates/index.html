@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <title>Galera do Vôlei V1</title>
+</head>
+<body>
+    <div style="min-height: 100vh;" class="flex column going-center">
+        
+        <div class="flex column going-center gap">
+          <h2>Seja bem-vindo ao</h2>
+          <p id="app-name">Galera do Vôlei</p>
+        </div>
+
+        <div id="form-login-div" class="flex gap">
+          <form action="/login/:userName/:userPassword" method="GET">
+            <div class="flex column going-center gap">
+                <label for="name">Digite seu login</label>
+                <input class="form-login-input mt-sm" type="text" id="name" name="name" required autofocus>
+                <label for="password">Digite sua senha</label>
+                <input class="form-login-input mt-sm" type="password" id="password" name="password" required>
+            </div>
+            <button class="mt-sm" id="form-login-btn" type="submit">login</button>
+          </form>
+        </div>
+
+    </div>
+</body>
+</html>

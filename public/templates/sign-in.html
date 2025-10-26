@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="../public/css/sign-in.css">
+    <title>Galera do Vôlei - Cadastro</title>
+</head>
+<body>
+    <div class="full-height flex column going-center">
+
+      <div class="flex column going-center gap">
+        <div class="flex row going-center gap">
+          <p class="app-name">Galera do Vôlei</p>
+          <p class="voley-ball">🏐</p>
+        </div>
+        
+        <h4 class="light">Olá, jogador! cadastre-se abaixo</h4>
+      </div>
+
+      <div id="sign-in-div" class="flex gap mt-sm">
+        <form action="/sign-in" method="POST">
+            <div id="sign-in-form-fields" class="flex column going-left gap">
+                
+                <div class="flex row going-left gap">
+                  <input class="form-sign-in-input mt-sm" type="text" id="username" name="username" required autofocus>
+                  <label for="username">Seu nome de usuário</label>
+                </div>
+                
+                <div class="flex row going-left gap">
+                  <input class="form-sign-in-input mt-sm" type="password" id="password" name="password" required>
+                  <label for="password">Sua senha</label>
+                </div>
+
+                <div class="flex row going-left gap">
+                  <input class="form-sign-in-input mt-sm" type="number" id="inviterId" name="inviterId" required>
+                  <label for="inviterId">Id do jogador convidante</label>
+                </div>
+
+                <div class="flex row going-left gap">
+                  <input class="form-sign-in-input mt-sm" type="date" id="birth" name="birth" required>
+                  <label for="birth">Sua data de nascimento</label>
+                </div>
+
+            </div>
+
+            <div id="sign-in-form-selects" class="flex row going-center gap">
+                <div class="flex column going-center gap">
+                    <label class="mt-sm" for="gender">Seu gênero</label>
+                    <select name="gender" id="gender" required>
+                        <option value="void">selecionar...</option>
+                        <option value="f">feminino</option>
+                        <option value="m">masculino</option>
+                        <option value="x">outra opção</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="mt-sm" id="form-sign-in-btn" type="submit">cadastrar</button>
+    
+        </form>
+      </div>
+
+      <div class="flex column going-center gap mt-sm">
+        <h4 class="light">Já possui uma conta?</h4>
+        <!-- Rotas assim sempre são GET, portanto >> rota.get("/login") -->
+        <a id="form-login-btn" href="/login">entrar</a>
+      </div>
+
+    </div>
+
+    <script type="module" src="../../dist/public/js/sign-in.js"></script>
+
+</body>
+</html>

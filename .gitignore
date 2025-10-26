@@ -1,0 +1,65 @@
+
+
+# Dependências
+node_modules/
+
+# Arquivos de build/compilação TypeScript
+dist/
+*.js.map
+*.d.ts.map
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Cache de testes
+.jest/
+coverage/
+*.test.js
+
+# Cache do TypeScript
+*.tsbuildinfo
+.tscache/
+
+# Cache de IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.temp
+.cache/
+
+# Arquivos de debug
+.pnp.*
+.yarn/
+
+# Arquivos Python (pelo drafts.py que vi)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Arquivos de sistema operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
