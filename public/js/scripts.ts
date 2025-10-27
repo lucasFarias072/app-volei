@@ -1,7 +1,7 @@
 
 
 import { mountGetAllPlayers, mountGetAllMatches } from "../../src/queries/mount-table.js"
-import { playerService } from "../../src/services/PlayerService.service.js"
+import { playerService } from "../../src/services/Player.service.js"
 
 let matchIdClicked: number = 0
 

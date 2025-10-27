@@ -1,18 +1,18 @@
 
 
 import express from "express"
-import { playerRoutes } from "./src/routes/PlayerRouter.router.js"
-import { playersCategoryRoutes } from "./src/routes/PlayerCategoryRouter.router.js"
-import { matchRoutes } from "./src/routes/MatchRouter.router.js"
-import { siteRoutes } from "./src/routes/SiteRouter.router.js"
-import { matchCategoriesRoutes } from "./src/routes/MatchCategoryRouter.router.js"
-import { matchSituationsRoutes } from "./src/routes/MatchSituationRouter.router.js"
-import { matchesReportRoutes } from "./src/routes/MatchReportRouter.router.js"
-import { matchesEvaluationsRoutes } from "./src/routes/MatchEvaluationRouter.router.js"
+import { playerRoutes } from "./src/routes/Player.route.js"
+import { playersCategoryRoutes } from "./src/routes/PlayerCategory.route.js"
+import { matchRoutes } from "./src/routes/Match.route.js"
+import { siteRoutes } from "./src/routes/Site.route.js"
+import { matchCategoriesRoutes } from "./src/routes/MatchCategory.route.js"
+import { matchSituationsRoutes } from "./src/routes/MatchSituation.route.js"
+import { matchesReportRoutes } from "./src/routes/MatchReport.route.js"
+import { matchesEvaluationsRoutes } from "./src/routes/MatchEvaluation.route.js"
 
-import { signInRoute } from "./src/routes/SignInRouter.router.js"
+import { signInRoute } from "./src/routes/SignIn.route.js"
 import { loginRoute } from "./src/routes/login.js"
-import { userIndexRoute } from "./src/routes/UserIndexRouter.router.js"
+import { userIndexRoute } from "./src/routes/UserIndex.route.js"
 
 import { globalErrorHandler } from "./dist/src/middlewares/globalErrorHandler.middleware.js"
 
@@ -23,19 +23,19 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // lidar com formulários html
 
-app.use("/api/jogadores", playerRoutes)
-app.use("/api/jogadores-cat", playersCategoryRoutes)
-app.use("/api/partidas", matchRoutes)
-app.use("/api/locais", siteRoutes)
-app.use("/api/partida-categorias", matchCategoriesRoutes)
-app.use("/api/partida-situacoes", matchSituationsRoutes)
-app.use("/api/partidas-relatorio", matchesReportRoutes)
-app.use("/api/partidas-avaliacao", matchesEvaluationsRoutes)
+app.use("/api/players", playerRoutes)
+app.use("/api/players-categories", playersCategoryRoutes)
+app.use("/api/matches", matchRoutes)
+app.use("/api/sites", siteRoutes)
+app.use("/api/matches-category", matchCategoriesRoutes)
+app.use("/api/matches-situation", matchSituationsRoutes)
+app.use("/api/macthes-report", matchesReportRoutes)
+app.use("/api/matches-evaluation", matchesEvaluationsRoutes)
 
 // Chamados nos htmls correspondentes de mesmo nome
 app.use("/sign-in", signInRoute) 
 app.use("/login", loginRoute)
-app.use("/painel-usuario", userIndexRoute)
+app.use("/user-panel", userIndexRoute)
 
 app.use('/dist', express.static('./dist'))
 app.use('/public', express.static('./public'))

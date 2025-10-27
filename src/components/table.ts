@@ -1,17 +1,24 @@
 
 
-import type { VoleyPlayer } from "../models/player.js"
+import type { VolleyPlayer } from "../models/Player.entity.js"
 import { setPerformance } from "../utils/functions.js"
 
-import { matchEvaluationService } from "../services/MatchEvaluationService.service.js"
-import { playerCategoryService } from "../services/PlayerCategoryService.service.js"
+import { matchEvaluationService } from "../services/MatchEvaluation.service.js"
+import { playerCategoryService } from "../services/PlayerCategory.service.js"
 
-import { PlayerCategoryService } from "../services/PlayerCategoryService.service.js"
-import { MatchEvaluationService } from "../services/MatchEvaluationService.service.js"
+import { PlayerCategoryService } from "../services/PlayerCategory.service.js"
+import { MatchEvaluationService } from "../services/MatchEvaluation.service.js"
+
+import { matchService } from "../services/Match.service.js"  
+import { MatchService } from "../services/Match.service.js"
+import { matchSituationService } from "../services/MatchSituation.service.js"
+import { MatchSituationService } from "../services/MatchSituation.service.js"
 
 export interface ServicesGroup {
   playerCategoryService: PlayerCategoryService,
-  matchEvaluationService: MatchEvaluationService
+  matchEvaluationService: MatchEvaluationService,
+  matchService: MatchService  
+  matchSituationService: MatchSituationService
 }
 
 export interface PlayerTableRow {
@@ -28,7 +35,7 @@ export class IntroductionComponent {
   mount(matchId: number): string {
     this.div += `
     <div class="flex row going-center gap">
-      <a href="/" class="return-index">voltar</a>
+      <a href="/user-panel" class="return-index">voltar</a>
       <h2 class="match-players-title">Jogadores da partida ${matchId}</h2>
     </div>
     `
@@ -53,7 +60,7 @@ export class TableComponent {
         <tr>
           <th>Jogador</th>
           <th>Categoria</th>
-          <th>Desempenho</th>
+          <th>Avaliação na partida</th>
         </tr>
       </thead>
       <tbody>
@@ -64,12 +71,18 @@ export class TableComponent {
     return "</tbody></table>"
   }
 
-  mount(players: VoleyPlayer[], matchId: number) {
+  mount(players: VolleyPlayer[], matchId: number) {
 
     const services: ServicesGroup = {
       playerCategoryService: playerCategoryService,
-      matchEvaluationService: matchEvaluationService
+      matchEvaluationService: matchEvaluationService,
+      matchService: matchService,
+      matchSituationService: matchSituationService  
     }
+    
+    // Situação da partida clicada (passar pro frontend não deixar avaliar jogadores em partidas não encerradas)
+    const matchIdForThisTag = services.matchService.findByIdMapBySituationId(matchId)
+    const matchSituation = services.matchSituationService.mapBySituation(matchIdForThisTag!)
 
     players.forEach(player => {
       const playerCategory = services.playerCategoryService.findByCategory(player.playerCat)
@@ -84,7 +97,7 @@ export class TableComponent {
         evaluation: playerEvaluation ?? 0
       }
 
-      this.body += this.createRow(tableRow)
+      this.body += this.createRow(tableRow, matchSituation!)
       // const playerCategory = playersCategories.filter(cat => cat.categoryId === player.playerCat)
       // const playerCategoryName = playerCategory.map(cat => cat.description)
       // const playerCategoryColor = playerCategory.map(cat => cat.color)
@@ -95,12 +108,15 @@ export class TableComponent {
     this.table += this.body
   }
 
-  createRow(playerData: PlayerTableRow) {
+  createRow(playerData: PlayerTableRow, matchSituation: string) {
+    const playerEvaluation = matchSituation === "encerrada" ? `nota ${playerData.evaluation}` : "a definir"
+    const playerEvaluationBackground = matchSituation === "encerrada" ? setPerformance(playerData.evaluation) : "rgba(255, 255, 255, .5)"
+    
     return `
     <tr>
       <td class="player-style-simple">${playerData.username}</td>
       <td class="player-category" style="background: ${playerData.catColor}">${playerData.catName}</td>
-      <td class="player-performance" style="background: ${setPerformance(playerData.evaluation)}">nota ${playerData.evaluation}</td>
+      <td class="player-performance" style="background: ${playerEvaluationBackground}">${playerEvaluation}</td>
     <tr>
     `
   }
@@ -117,7 +133,7 @@ export class TemplateModelForMatch {
     this.tableComponent = new TableComponent()
   }
 
-  mount(players: VoleyPlayer[], matchId: string) {
+  mount(players: VolleyPlayer[], matchId: string) {
     this.tableComponent.body += this.introductionComponent.mount(parseInt(matchId)) 
     this.tableComponent.mount(players, parseInt(matchId))
     return this.tableComponent.table

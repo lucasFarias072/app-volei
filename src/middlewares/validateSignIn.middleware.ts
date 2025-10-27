@@ -2,8 +2,8 @@
 
 import type { Request, Response, NextFunction } from "express"
 import { doesKeyExist, doesLabelExist } from "../utils/functions.js"
-import { playerService } from "../services/PlayerService.service.js"
-import { VoleyPlayer } from "../models/player.js"
+import { playerService } from "../services/Player.service.js"
+import { VolleyPlayer } from "../models/Player.entity.js"
 import path from 'path'
 
 function validateSignInFields(req: Request, res: Response, next: NextFunction) {
@@ -32,7 +32,7 @@ function validatePlayerId(req: Request, res: Response, next: NextFunction) {
   
   try {
     const { inviterId } = req.body
-    const invitersKeys = playerService.findAllKeys()
+    const invitersKeys = playerService.mapByPlayerId()
     const isInviterKeyValid = doesKeyExist(parseInt(inviterId), invitersKeys)
     if(!isInviterKeyValid)
       return res.sendFile(path.resolve("./public/templates/sign-in-error.html"))
@@ -68,7 +68,7 @@ function createUser(req: Request, res: Response) {
     let currentPlayerId = 0
     const getAllPlayers = playerService.findAll()
     currentPlayerId = getAllPlayers[getAllPlayers.length - 1]!.playerId + 1
-    const newVoleyPlayer = new VoleyPlayer(
+    const newVolleyPlayer = new VolleyPlayer(
         currentPlayerId, parseInt(inviterId), parseInt(playerCat), username, gender, birth, password, false
     )
   return res.sendFile(path.resolve("./public/templates/login.html"))

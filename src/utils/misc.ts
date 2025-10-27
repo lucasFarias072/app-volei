@@ -1,9 +1,5 @@
 
 
-function getRandom(tail: number, head: number): number {
-  return Math.floor(Math.random() * (head - tail) +  tail)
-}
-
 function rotate(tag: HTMLElement): void {
   console.log("rotação")
   tag.style.transition = "ease 1.5s"

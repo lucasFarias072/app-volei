@@ -1,8 +1,8 @@
 
 
-import type { PlayerCategory } from "../../src/models/player-category.js"
+import type { PlayerCategory } from "../../src/models/PlayerCategory.entity.js"
 import { rotate } from "../../src/utils/misc.js"
-import { playerCategoryService } from "../../src/services/PlayerCategoryService.service.js"
+import { playerCategoryService } from "../../src/services/PlayerCategory.service.js"
 
 // Add select field for "playerCat" from entity "PlayerCategory"
 function mountSignInForm(where: HTMLElement): void {

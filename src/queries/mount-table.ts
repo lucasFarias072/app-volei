@@ -2,12 +2,12 @@
 
 import { isMatchOver } from "../../src/utils/functions.js"
 
-import { playerService } from "../services/PlayerService.service.js"
-import { playerCategoryService } from "../services/PlayerCategoryService.service.js"
-import { siteService } from "../services/SiteService.service.js"
-import { matchSituationService } from "../services/MatchSituationService.service.js"
-import { matchCategoryService } from "../services/MatchCategoryService.service.js"
-import { matchService } from "../services/MatchService.service.js"
+import { playerService } from "../services/Player.service.js"
+import { playerCategoryService } from "../services/PlayerCategory.service.js"
+import { siteService } from "../services/Site.service.js"
+import { matchSituationService } from "../services/MatchSituation.service.js"
+import { matchCategoryService } from "../services/MatchCategory.service.js"
+import { matchService } from "../services/Match.service.js"
 
 function mountGetAllPlayers(where: HTMLElement | null) {
   try {
@@ -49,7 +49,7 @@ function mountGetAllMatches(where: HTMLElement | null): void {
     // Get keys from "Site"
     const getAllSites = siteService.findAll()
     
-    // Get keys from "VoleyPlayer"
+    // Get keys from "VolleyPlayer"
     const getAllPlayers = playerService.findAll()
     
     let template = ''
@@ -88,7 +88,7 @@ function mountGetAllMatches(where: HTMLElement | null): void {
             <span class="match-organizer">${matchOrganizerThisMatch.map(matchOrg => matchOrg.username)}</span>
           </div>
           
-          <a href="/api/jogadores/partida/${matchId}" class="see-players" data-matchid=${matchId}>ver participantes</a>
+          <a href="/api/players/match/${matchId}" class="see-players" data-matchid=${matchId}>ver participantes</a>
           
         </div>
       `
