@@ -9,52 +9,50 @@ class PlayerService {
   findAll(): VolleyPlayer[] {
     const getAll: VolleyPlayer[] = playerRepository.findAll()
     if(getAll.length === 0)
-      throw new NotFoundException("Não há jogadores cadastrados!")
+      throw new NotFoundException("Erro: encontrar todos os jogadores retornou: vazio.")
     return getAll
   }
 
   findByUsername(username: string): VolleyPlayer | undefined {
       const playerWithThisUsername: VolleyPlayer | undefined = playerRepository.findByUsername(username)
       if(!playerWithThisUsername)
-        throw new NotFoundException("Erro: Nome de usuário não encontrado entre os jogadores.")
+        throw new NotFoundException("Erro: encontrar jogador com esse nome retornou: vazio.")
       return playerWithThisUsername
   }
 
   mapByPlayerId(): number[] {
     const allPlayersIds: number[] = playerRepository.mapByPlayerId()
-
     if(allPlayersIds.length === 0)
-      throw new NotFoundException("Erro: Não há jogadores cadastrados, não é possível obter suas chaves.")
-
+      throw new NotFoundException("Erro: mapear chaves dos jogadores retornou: vazio.")
     return allPlayersIds
   }
 
   mapByUsername(): string[] {
     const allPlayersUsernames: string[] = playerRepository.mapByUsername()
     if(allPlayersUsernames.length === 0)
-      throw new NotFoundException("Erro: Não há jogadores cadastrados, não é possível obter seus nomes.")
+      throw new NotFoundException("Erro: mapear nomes dos jogadores retornou: vazio.")
     return allPlayersUsernames
   }
 
-  findByMatch(matchId: number): MatchReport[] {
-    const getAllPlayersFromThisMatch: MatchReport[] | undefined = playerRepository.findByMatch(matchId)
-    if(!getAllPlayersFromThisMatch || getAllPlayersFromThisMatch.length === 0)
-      throw new NotFoundException("Não há jogadores cadastrados na partida com esse ID")
-    return getAllPlayersFromThisMatch
+  findByMatchId(matchId: number): MatchReport[] {
+    const allPlayersFromThisMatch: MatchReport[] = playerRepository.findByMatchId(matchId)
+    if(allPlayersFromThisMatch.length === 0)
+      throw new NotFoundException("Erro: encontrar jogadores nesse relatório de partida retornou: vazio.")
+    return allPlayersFromThisMatch
   }
 
-  findByMatchKeys(matchId: number): number[] {
-    const getAllPlayersKeysFromThisMatch: number[] = playerRepository.findByMatchKeys(matchId)
-    if(getAllPlayersKeysFromThisMatch.length === 0)
-      throw new NotFoundException("Não há jogadores cadastrados nessa partida, portanto não é possível obter seus IDs")
-    return getAllPlayersKeysFromThisMatch
+  findByMatchIdMapByPlayerId(matchId: number): number[] {
+    const allPlayersKeysFromThisMatch: number[] = playerRepository.findByMatchIdMapByPlayerId(matchId)
+    if(allPlayersKeysFromThisMatch.length === 0)
+      throw new NotFoundException("Erro: encontrar chaves dos jogadores nessa partida retornou: vazio.")
+    return allPlayersKeysFromThisMatch
   }
 
-  findPlayerByMatch(matchId: number): VolleyPlayer[] {
-    const getAllPlayersFromThisMatch: VolleyPlayer[] = playerRepository.findPlayerByMatch(matchId)
-    if(getAllPlayersFromThisMatch.length === 0)
-      throw new NotFoundException("Não há jogadores vinculados com esta partida!")
-    return getAllPlayersFromThisMatch
+  findAllByMatch(matchId: number): VolleyPlayer[] {
+    const allPlayersFromThisMatch: VolleyPlayer[] = playerRepository.findAllByMatch(matchId)
+    if(allPlayersFromThisMatch.length === 0)
+      throw new NotFoundException("Erro: encontrar jogadores nessa partida retornou: vazio.")
+    return allPlayersFromThisMatch
   }
 }
 

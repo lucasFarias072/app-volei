@@ -1,22 +1,27 @@
 
 
 import express from "express"
-// import { matchDescriptions } from "../../dist/src/models/match-situations.js"
-import { matchSituationController } from "../../dist/src/controllers/MatchSituationController.controller.js"
+import { matchSituationController } from "../../dist/src/controllers/MatchSituation.controller.js"
+
 const matchSituationsRoutes = express.Router()
 
-/* matchSituationsRoutes.get('/', (req, res) => {
-  try {
-    const getAllMatchSituations = matchDescriptions
-    if(!getAllMatchSituations) return res.status(404).json({msg: "Sem situações de partida registradas"})
-    // const getAllMatchSituations = await getAllMatchSituationsQuery.json()
-    return res.status(200).send(getAllMatchSituations)
-  } catch(err) {
-    console.log(`Erro interno no servidor: ${err}`)
-  }
-}) */
-
-matchSituationsRoutes.get('/', matchSituationController.findAll) // /api/partida-situacoes
+/**
+ * @swagger
+ * /api/matches-situations:
+ *   get:
+ *     summary: Retorna todas as instâncias de situação de partida
+ *     tags: [Matches]
+ *     responses:
+ *       200:
+ *         description: Todas as instâncias de situação de partida - MatchSituation[]
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/MatchSituation'
+ */
+matchSituationsRoutes.get('/', matchSituationController.findAll)
 
 export {
   matchSituationsRoutes

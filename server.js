@@ -18,23 +18,30 @@ import { globalErrorHandler } from "./dist/src/middlewares/globalErrorHandler.mi
 
 import path from 'path'
 
+import { specs, swaggerUi } from "./swagger-config.js"
+
+// const { specs, swaggerUi } = require('./swagger-config')
+
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // lidar com formulários html
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+
 app.use("/api/players", playerRoutes)
 app.use("/api/players-categories", playersCategoryRoutes)
 app.use("/api/matches", matchRoutes)
 app.use("/api/sites", siteRoutes)
-app.use("/api/matches-category", matchCategoriesRoutes)
-app.use("/api/matches-situation", matchSituationsRoutes)
-app.use("/api/macthes-report", matchesReportRoutes)
-app.use("/api/matches-evaluation", matchesEvaluationsRoutes)
+app.use("/api/matches-categories", matchCategoriesRoutes)
+app.use("/api/matches-situations", matchSituationsRoutes)
+app.use("/api/matches-reports", matchesReportRoutes)
+app.use("/api/matches-evaluations", matchesEvaluationsRoutes)
 
 // Chamados nos htmls correspondentes de mesmo nome
 app.use("/sign-in", signInRoute) 
 app.use("/login", loginRoute)
+
 app.use("/user-panel", userIndexRoute)
 
 app.use('/dist', express.static('./dist'))

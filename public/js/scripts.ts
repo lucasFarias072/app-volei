@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const valueWithinTag = buttonTag.getAttribute("data-matchid")
       if(valueWithinTag) {
         matchIdClicked = parseInt(valueWithinTag)
-        playerService.findPlayerByMatch(matchIdClicked)
+        playerService.findAllByMatch(matchIdClicked)
       }
     })
   })

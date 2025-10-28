@@ -10,9 +10,9 @@ jest.mock("../../repositories/Player.repository.js", () => ({
     findByUsername: jest.fn(),
     mapByPlayerId: jest.fn(),
     mapByUsername: jest.fn(),
-    findByMatch: jest.fn(),
-    findByMatchKeys: jest.fn(),
-    findPlayerByMatch: jest.fn()
+    findByMatchId: jest.fn(),
+    findByMatchIdMapByPlayerId: jest.fn(),
+    findAllByMatch: jest.fn()
   }
 }))
 
@@ -31,7 +31,7 @@ describe("PlayerRepository", () => {
       (playerRepository.findAll as jest.Mock).mockReturnValue([])
       expect(() => {
         playerService.findAll()
-      }).toThrow("Não há jogadores cadastrados!")
+      }).toThrow("Erro: encontrar todos os jogadores retornou: vazio.")
     })
   })
 
@@ -47,7 +47,7 @@ describe("PlayerRepository", () => {
       (playerRepository.findByUsername as jest.Mock).mockReturnValue(undefined)
       expect(() => {
         playerService.findByUsername("")
-      }).toThrow("Erro: Nome de usuário não encontrado entre os jogadores.")
+      }).toThrow("Erro: encontrar jogador com esse nome retornou: vazio.")
     })
   })
 
@@ -63,7 +63,7 @@ describe("PlayerRepository", () => {
       (playerRepository.mapByPlayerId as jest.Mock).mockReturnValue([])
       expect(() => {
         playerService.mapByPlayerId()
-      }).toThrow("Erro: Não há jogadores cadastrados, não é possível obter suas chaves.")
+      }).toThrow("Erro: mapear chaves dos jogadores retornou: vazio.")
     })
   })
 
@@ -79,55 +79,55 @@ describe("PlayerRepository", () => {
       (playerRepository.mapByUsername as jest.Mock).mockReturnValue([])
       expect(() => {
         playerService.mapByUsername()
-      }).toThrow("Erro: Não há jogadores cadastrados, não é possível obter seus nomes.")
+      }).toThrow("Erro: mapear nomes dos jogadores retornou: vazio.")
     })
   })
 
-  describe("findByMatch (teste de erro de serviço)", () => {
+  describe("findByMatchId (teste de erro de serviço)", () => {
     it("Deve retornar o erro: NotFoundException", () => {
-      (playerRepository.findByMatch as jest.Mock).mockReturnValue([])
+      (playerRepository.findByMatchId as jest.Mock).mockReturnValue([])
       expect(() => {
-        playerService.findByMatch(1)
+        playerService.findByMatchId(1)
       }).toThrow(NotFoundException)
     })
 
     it("Deve retornar o erro: NotFoundException (textualmente)", () => {
-      (playerRepository.findByMatch as jest.Mock).mockReturnValue([])
+      (playerRepository.findByMatchId as jest.Mock).mockReturnValue([])
       expect(() => {
-        playerService.findByMatch(1)
-      }).toThrow("Não há jogadores cadastrados na partida com esse ID")
+        playerService.findByMatchId(1)
+      }).toThrow("Erro: encontrar jogadores nesse relatório de partida retornou: vazio.")
     })
   })
 
-  describe("findByMatchKeys (teste de erro de serviço)", () => {
+  describe("findByMatchIdMapByPlayerId (teste de erro de serviço)", () => {
     it("Deve retornar o erro: NotFoundException", () => {
-      (playerRepository.findByMatchKeys as jest.Mock).mockReturnValue([])
+      (playerRepository.findByMatchIdMapByPlayerId as jest.Mock).mockReturnValue([])
       expect(() => {
-        playerService.findByMatchKeys(1)
+        playerService.findByMatchIdMapByPlayerId(1)
       }).toThrow(NotFoundException)
     })
 
     it("Deve retornar o erro: NotFoundException (textualmente)", () => {
-      (playerRepository.findByMatchKeys as jest.Mock).mockReturnValue([])
+      (playerRepository.findByMatchIdMapByPlayerId as jest.Mock).mockReturnValue([])
       expect(() => {
-        playerService.findByMatchKeys(1)
-      }).toThrow("Não há jogadores cadastrados nessa partida, portanto não é possível obter seus IDs")
+        playerService.findByMatchIdMapByPlayerId(1)
+      }).toThrow("Erro: encontrar chaves dos jogadores nessa partida retornou: vazio.")
     })
   })
 
-  describe("findPlayerByMatch (teste de erro de serviço)", () => {
+  describe("findAllByMatch (teste de erro de serviço)", () => {
     it("Deve retornar o erro: NotFoundException", () => {
-      (playerRepository.findPlayerByMatch as jest.Mock).mockReturnValue([])
+      (playerRepository.findAllByMatch as jest.Mock).mockReturnValue([])
       expect(() => {
-        playerService.findPlayerByMatch(1)
+        playerService.findAllByMatch(1)
       }).toThrow(NotFoundException)
     })
 
     it("Deve retornar o erro: NotFoundException (textualmente)", () => {
-      (playerRepository.findPlayerByMatch as jest.Mock).mockReturnValue([])
+      (playerRepository.findAllByMatch as jest.Mock).mockReturnValue([])
       expect(() => {
-        playerService.findPlayerByMatch(1)
-      }).toThrow("Não há jogadores vinculados com esta partida!")
+        playerService.findAllByMatch(1)
+      }).toThrow("Erro: encontrar jogadores nessa partida retornou: vazio.")
     })
   })
 

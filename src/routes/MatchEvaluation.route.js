@@ -1,21 +1,26 @@
 
 
 import express from "express"
-// import { matchesEvaluations } from "../../dist/src/models/match-evaluation.js"
-import { matchEvaluationController } from "../../dist/src/controllers/MatchEvaluationController.controller.js"
+import { matchEvaluationController } from "../../dist/src/controllers/MatchEvaluation.controller.js"
 
 const matchesEvaluationsRoutes = express.Router()
 
-/* matchesEvaluationsRoutes.get('/', (req, res) => {
-  try {
-    const getAllMatchesEvaluations = matchesEvaluations
-    if(!getAllMatchesEvaluations) return res.status(404).json({msg: "Sem avaliações de jogadores registradas nesta partida"})
-    return res.status(200).send(getAllMatchesEvaluations)
-  } catch(err) {
-    console.log(`Erro interno no servidor: ${err}`)
-  }
-}) */
-
+/**
+ * @swagger
+ * /api/matches-evaluations:
+ *   get:
+ *     summary: Retorna todas as instâncias de avaliação de partida
+ *     tags: [Matches]
+ *     responses:
+ *       200:
+ *         description: Todas as instâncias de avaliação de partida - MatchEvaluation[]
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/MatchEvaluation'
+ */
 matchesEvaluationsRoutes.get('/', matchEvaluationController.findAll)
 
 export {

@@ -1,19 +1,27 @@
 
 
 import express from "express"
-import { sites } from "../../dist/src/models/Site.entity.js"
+import { siteController } from "../../dist/src/controllers/Site.controller.js"
+
 const siteRoutes = express.Router()
 
-siteRoutes.get('/', (req, res) => {
-  try {
-    const getAllSites = sites
-    if(!getAllSites) return res.status(404).json({msg: "Sem arenas registradas"})
-    // const getAllSites = await getAllSitesQuery.json()
-    return res.status(200).send(getAllSites)
-  } catch(err) {
-    console.log(`Erro interno no servidor: ${err}`)
-  }
-})
+/**
+ * @swagger
+ * /api/sites:
+ *   get:
+ *     summary: Retorna todas as instâncias de local de partida
+ *     tags: [Sites]
+ *     responses:
+ *       200:
+ *         description: Todas as instâncias de local de partida - Site[]
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Site'
+ */
+siteRoutes.get('/', siteController.findAll)
 
 export {
   siteRoutes

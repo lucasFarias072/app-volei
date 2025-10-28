@@ -51,41 +51,41 @@ class PlayerController {
     }
   }
 
-  findByMatch(req: Request, res: Response, next: NextFunction) {
+  findByMatchId(req: Request, res: Response, next: NextFunction) {
     try {
       const { matchId } = req.params
       if(!matchId)
         throw new HTTPException("Número da partida não foi fornecido!")
-      const getAllPlayersFromThisMatch: MatchReport[] = playerService.findByMatch(parseInt(matchId!))
-      return res.status(200).json(getAllPlayersFromThisMatch)
+      const allPlayersFromThisMatch: MatchReport[] = playerService.findByMatchId(parseInt(matchId!))
+      return res.status(200).json(allPlayersFromThisMatch)
     } catch(error) {
       next(error)
     }
   }
 
-  findByMatchKeys(req: Request, res: Response, next: NextFunction) {
+  findByMatchIdMapByPlayerId(req: Request, res: Response, next: NextFunction) {
     try {
       const { matchId } = req.params
 
       if(!matchId || matchId.trim() === '')
         throw new HTTPException("Número da partida não foi fornecido!")
 
-      const getAllPlayersKeysFromThisMatch: number[] = playerService.findByMatchKeys(parseInt(matchId!))
-      return res.status(200).json(getAllPlayersKeysFromThisMatch)
+      const allPlayersKeysFromThisMatch: number[] = playerService.findByMatchIdMapByPlayerId(parseInt(matchId!))
+      return res.status(200).json(allPlayersKeysFromThisMatch)
     } catch(error) {
       next(error)
     }
   }
 
-  findPlayerByMatch(req: Request, res: Response, next: NextFunction) {
+  findAllByMatch(req: Request, res: Response, next: NextFunction) {
     try {
       const { matchId } = req.params
 
       if(!matchId || matchId.trim() === '')
         throw new HTTPException("Número da partida não foi fornecido!")
 
-      const getAllPlayersFromThisMatch: VolleyPlayer[] = playerService.findPlayerByMatch(parseInt(matchId!))
-      return res.status(200).json(getAllPlayersFromThisMatch)
+      const allPlayersFromThisMatch: VolleyPlayer[] = playerService.findAllByMatch(parseInt(matchId!))
+      return res.status(200).json(allPlayersFromThisMatch)
     } catch(error) {
       next(error)
     }

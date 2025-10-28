@@ -1,7 +1,7 @@
 
 
 import express from "express"
-import { userIndexRouteController } from "../../dist/src/controllers/UserIndexRouteController.controller.js"
+import { userIndexRouteController } from "../../dist/src/controllers/UserIndexRoute.controller.js"
 
 const userIndexRoute = express.Router()
 

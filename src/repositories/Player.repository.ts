@@ -33,18 +33,21 @@ export class PlayerRepository {
   // Desde o controlador, passando pelo serviço e chegando ao repositório, ele é convertido p/ número
   // Mas de alguma forma que eu não entendo, ele reverte para string quando chega ao repositório
   // Portanto, a conversão aqui é essencial, pra evitar esse loucura esquisita
-  findByMatch(matchId: number): MatchReport[] | undefined {
+  findByMatchId(matchId: number): MatchReport[] {
     const matchIdAsNumber = Number(matchId)
-    return matchReportService.findAll().filter(match => match.matchId === matchIdAsNumber)
+    const allPlayersFromThisMatch: MatchReport[] = matchReportService.findAll().filter(match => match.matchId === matchIdAsNumber)
+    return allPlayersFromThisMatch
   }
 
-  findByMatchKeys(matchId: number): number[] {
-    return this.findByMatch(matchId)!.map((matchReport: MatchReport) => matchReport.playerId)
+  findByMatchIdMapByPlayerId(matchId: number): number[] {
+    const allPlayersKeysFromThisMatch: number[] = this.findByMatchId(matchId).map((matchReport: MatchReport) => matchReport.playerId)
+    return allPlayersKeysFromThisMatch
   }
 
-  // Se [VolleyPlayer(4), VolleyPlayer(5), VolleyPlayer(1)] está em [1, 2, 3]
-  findPlayerByMatch(matchId: number): VolleyPlayer[] {
-    return this.findAll().filter((player: VolleyPlayer) => this.findByMatchKeys(matchId).includes(player.playerId))
+  // Captura todas as chaves dos jogadores numa tal partida e filtra com todas as chaves de todos os jogadores
+  findAllByMatch(matchId: number): VolleyPlayer[] {
+    const allPlayersFromThisMatch: VolleyPlayer[] = this.findAll().filter((player: VolleyPlayer) => this.findByMatchIdMapByPlayerId(matchId).includes(player.playerId))
+    return allPlayersFromThisMatch
   }
 
 }

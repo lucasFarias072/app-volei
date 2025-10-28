@@ -50,7 +50,7 @@ function validateUsername(req: Request, res: Response, next: NextFunction) {
 
   try {
     const { username } = req.body
-    const usernames = playerService.findAllUsernames()
+    const usernames = playerService.mapByUsername()
     const isUsernameTaken = doesLabelExist(username.trim(), usernames)
     if(isUsernameTaken)
       return res.sendFile(path.resolve("./public/templates/sign-in-error.html"))
